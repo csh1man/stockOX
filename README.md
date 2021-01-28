@@ -13,11 +13,22 @@ openjdk 1.8
 ```
 git clone https://github.com/csh1man/stockOX.git
 ```
-### Front-end 
+### Front-end
+#### PC 버전
 ```
-../front-end/target/StockOX.exe
+../front-end/Build_PC/StockOX.exe
 ```
-IP 변경 필요 시, Lobby 화면에서 Server IP 변경 및 Set 버튼 클릭.
+IP 변경 필요 시, Lobby 화면에서 Server IP 변경 및 Set 버튼 클릭.  
+방향키 버튼으로 캐릭터 조종.
+
+
+#### Android 버전
+```
+../front-end/Build_Android/StockOX.apk
+```
+안드로이드 모바일로 apk 파일 옮겨, 게임 설치.  
+Gyro 기반 Tilting(기울임)으로 캐릭터 조종.
+
 
 ### Back-end
 ```
