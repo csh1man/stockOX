@@ -6,9 +6,10 @@ Koscom 2020 신입사원 해커톤에서 발표할, StockOX 프로젝트를 위�
 ```
 git clone https://github.com/csh1man/stockOX.git
 ```
-### Front-end
-../front-end/target/StockOX.exe 파일을 실행합니다. (Unity 게임 실행)
-
+### Front-end 
+```
+../front-end/target/StockOX.exe 
+```
 
 ### Back-end
 ```
