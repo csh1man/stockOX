@@ -3,7 +3,27 @@
 Koscom 2020 신입사원 해커톤에서 발표할, StockOX 프로젝트를 위한 Repo입니다.
 
 ## 실행 방법
+```
+git clone https://github.com/csh1man/stockOX.git
+```
+### Front-end
 ../front-end/target/StockOX.exe 파일을 실행합니다. (Unity 게임 실행)
+
+
+### Back-end
+```
+cd Backend
+chmod +x gradlew
+./gradlew build
+cd build/libs
+java -jar stockox-0.0.1-SNAPSHOT.jar
+```
+
+### 배치파일 실행(crontab으로 매일 저녁 10시 수행)
+```
+cd /home/ubuntu/batch
+./batch.sh
+```
 
 ## 목적 및 기대 효과
 * 목적
