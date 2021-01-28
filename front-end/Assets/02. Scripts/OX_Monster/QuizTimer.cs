@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class QuizTimer : MonoBehaviour
 {
     public Text Timer;
-    public int count=3;
+    public int count = 5;
     // Use this for initialization
     void Start()
     {
@@ -21,7 +21,7 @@ public class QuizTimer : MonoBehaviour
 	}
     IEnumerator I_TimerStart()
     {
-		count = 3;
+		count = 5;
 		Timer.text = count.ToString();
         while (true)
         {
