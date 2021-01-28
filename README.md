@@ -15,8 +15,9 @@ git clone https://github.com/csh1man/stockOX.git
 ```
 ### Front-end 
 ```
-../front-end/target/StockOX.exe 
+../front-end/target/StockOX.exe
 ```
+IP 변경 필요 시, Lobby 화면에서 Server IP 변경 및 Set 버튼 클릭.
 
 ### Back-end
 ```
