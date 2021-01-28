@@ -7,11 +7,11 @@ using UnityEngine.Networking;
 
 public class APIHelper  : MonoBehaviour
 {
-    static string ip = "http://54.180.153.40:3000";
+    public string ip = "http://54.180.153.40:3000";
 
-    string companyList_url = ip + "/companyList";
-    string price_url = ip + "/getProblem?company_id=";
-    string news_url = ip + "/title?company_name=";
+    string companyList_url = "/companyList";
+    string price_url = "/getProblem?company_id=";
+    string news_url = "/title?company_name=";
     string company_code = "none";
     string company_name = "none";
 
@@ -37,15 +37,14 @@ public class APIHelper  : MonoBehaviour
     }
 
     public int Get_quiz_totalCount()
-    {        
-        Debug.Log("quizList Count : " + quizList.Count);
+    {
         return quizList.Count;
     }
 
     public IEnumerator News_GetMethod()
     {
         newsList.Clear();
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(news_url + company_name))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(ip + news_url + company_name))
         {
             // Request and wait for the desired page.
             yield return webRequest.SendWebRequest();
@@ -81,8 +80,7 @@ public class APIHelper  : MonoBehaviour
     public IEnumerator Quiz_GetMethod()
     {
         quizList.Clear();
-        Debug.Log("Quiz_GetMethod started");
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(price_url + company_code))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(ip + price_url + company_code))
         {
             // Request and wait for the desired page.
             yield return webRequest.SendWebRequest();
@@ -121,7 +119,7 @@ public class APIHelper  : MonoBehaviour
 
     public IEnumerator CompanyList_couroutine()
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(companyList_url))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(ip + companyList_url))
         {
             // Request and wait for the desired page.
             yield return webRequest.SendWebRequest();
@@ -132,6 +130,7 @@ public class APIHelper  : MonoBehaviour
             }
             else
             {
+                cl.Clear();
                 string s = webRequest.downloadHandler.text;    
                 string [] s_list = s.Substring(1, s.Length-2).Split('}');
                 
@@ -148,17 +147,20 @@ public class APIHelper  : MonoBehaviour
                     }
                     index++;
                 }
-            Dropdown dropdown= GameObject.Find("Dropdown").GetComponent<Dropdown>();
+                Dropdown dropdown= GameObject.Find("Dropdown").GetComponent<Dropdown>();
+                dropdown.options.Clear();
 
-	        List<string> dropdownOptions = new List<string>();
-            foreach (var item in cl)
-            {
-                dropdownOptions.Add(item.companyName + " ("+item.companyId+")");
+                List<string> dropdownOptions = new List<string>();
+                dropdownOptions.Add("종목을 선택해주세요.");
+                
+                foreach (var item in cl)
+                {
+                    dropdownOptions.Add(item.companyName + " ("+item.companyId+")");
+                }
+                dropdown.AddOptions(dropdownOptions);
+                dropdown.onValueChanged.AddListener(delegate{DropdownValueChanged(dropdown);});
             }
-        	dropdown.AddOptions(dropdownOptions);
-            dropdown.onValueChanged.AddListener(delegate{DropdownValueChanged(dropdown);});
-            }
-        }                
+        }
     }
     
     void DropdownValueChanged(Dropdown change)

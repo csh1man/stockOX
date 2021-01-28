@@ -20,12 +20,10 @@ public class CharacterMove : MonoBehaviour
     {
         if (other.gameObject.name == "O")
         {
-            Debug.Log("O Panel");
             QuizManager.instance.O_Choose();
         }
         else
         {
-            Debug.Log("X Panel");
             QuizManager.instance.X_Choose();
         }
     }

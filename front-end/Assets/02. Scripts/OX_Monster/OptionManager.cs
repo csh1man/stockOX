@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OptionManager  : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class OptionManager  : MonoBehaviour
 
 	public GameObject audioOn;
 	public GameObject audioOff;
+
+	bool isAnswerAudioSet = false;
 
     void Awake()
     {
@@ -36,6 +39,13 @@ public class OptionManager  : MonoBehaviour
 			audioOff.SetActive (false);
 		}
 	}
+	// Server IP 선택
+	public void SetServerIP(){
+		GameObject IpObject = GameObject.Find("IPField");
+		InputField IpField = IpObject.GetComponent<InputField>();
+		APIHelper.instance.ip = IpField.text;
+		Debug.Log("ip : " + APIHelper.instance.ip);
+	}
 
 	// 게임종료.
 	public void QuitGame(){
@@ -47,6 +57,12 @@ public class OptionManager  : MonoBehaviour
 		audioOn.SetActive (true);
 		audioOff.SetActive (false);
 		bgmAudio.mute = false;
+		
+		if(isAnswerAudioSet) {
+			rightAnswerAudio.mute = false;
+			wrongAnswerAudio.mute = false;
+		}
+
 		PlayerPrefs.SetInt ("Audio", 1);
 	}
 
@@ -55,6 +71,12 @@ public class OptionManager  : MonoBehaviour
 		audioOn.SetActive (false);
 		audioOff.SetActive (true);
 		bgmAudio.mute = true;
+
+		if(isAnswerAudioSet) {
+			rightAnswerAudio.mute = true;
+			wrongAnswerAudio.mute = true;
+		}
+
 		PlayerPrefs.SetInt ("Audio", 0);
 	}
 
@@ -62,7 +84,21 @@ public class OptionManager  : MonoBehaviour
 	{
 		rightAnswerAudio = GameObject.Find("AnswerRightAudio").GetComponent<AudioSource>();
 		wrongAnswerAudio = GameObject.Find("AnswerWrongAudio").GetComponent<AudioSource>();
+
+		if(bgmAudio.mute == true)
+		{
+			rightAnswerAudio.mute = true;
+			wrongAnswerAudio.mute = true;
+		}
+		else 
+		{
+			rightAnswerAudio.mute = false;
+			wrongAnswerAudio.mute = false;
+		}
+
+		isAnswerAudioSet = true;
 	}
+
 	public void PlayRightAnswerAudio()
 	{
 		rightAnswerAudio.Play();
