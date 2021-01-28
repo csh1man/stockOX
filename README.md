@@ -2,6 +2,13 @@
 
 Koscom 2020 신입사원 해커톤에서 발표할, StockOX 프로젝트를 위한 Repo입니다.
 
+## 실행 환경
+### Back-end
+```
+AWS Ubuntu 20.04.1 LTS
+openjdk 1.8
+```
+
 ## 실행 방법
 ```
 git clone https://github.com/csh1man/stockOX.git
