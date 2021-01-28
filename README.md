@@ -1,9 +1,9 @@
 # StockOX
 
-* Koscom 2020 신입사원 해커톤에서 발표할, StockOX 프로젝트를 위한 Repo입니다.
+Koscom 2020 신입사원 해커톤에서 발표할, StockOX 프로젝트를 위한 Repo입니다.
 
 ## 실행 방법
-* ../front-end/target/StockOX.exe 파일을 실행합니다. (Unity 게임 실행)
+../front-end/target/StockOX.exe 파일을 실행합니다. (Unity 게임 실행)
 
 ## 목적 및 기대 효과
 * 목적
